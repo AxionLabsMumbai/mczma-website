@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm add:*)",
+      "Bash(pnpm exec:*)",
+      "Bash(find /c/Users/Asus/Desktop/mczma-website/apps/frontend -type f -name *.png -o -name *.jpg -o -name *.svg -o -name *.webp)"
+    ]
+  }
+}
