@@ -2,6 +2,7 @@ import { createRootRoute, createRoute, createRouter, Outlet } from '@tanstack/re
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
 import Footer from './components/Footer';
+import NotificationsCirculars from './pages/NotificationsCirculars';
 
 const RootComponent = () => (
   <>
@@ -23,7 +24,13 @@ const indexRoute = createRoute({
   component: Home,
 });
 
-const routeTree = rootRoute.addChildren([indexRoute]);
+const notificationsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/notifications',
+  component: NotificationsCirculars,
+});
+
+const routeTree = rootRoute.addChildren([indexRoute, notificationsRoute]);
 
 export const router = createRouter({ routeTree });
 

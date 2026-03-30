@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
 const IMAGES = [
+  "/assets/banner5.png",
   "/assets/banner2.jpg",
   "/assets/banner3.jpg",
   "/assets/banner4.jpg",
-  "/assets/banner5.png",
   "/assets/banner6.jpg",
   "/assets/banner7.png",
   "/assets/banner8.jpg",
