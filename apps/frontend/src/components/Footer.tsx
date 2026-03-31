@@ -26,13 +26,13 @@ const Footer: React.FC = () => {
           </p>
           <div className="flex flex-col md:flex-row gap-4 mb-[20px] w-full md:w-auto">
             <Link
-              to="/"
+              to="/contact-us"
               className="px-10 py-4 bg-white text-[#043174] rounded-2xl font-medium text-[18px] md:text-[22px] hover:bg-blue-50 transition-all shadow-lg hover:scale-105 active:scale-95 text-center flex items-center justify-center w-full md:w-auto"
             >
               Contact Us
             </Link>
             <Link
-              to="/"
+              to="/faq"
               className="px-10 py-4 bg-[#043174] border border-white/20 text-white rounded-2xl font-medium text-[18px] md:text-[22px] hover:bg-[#007ee0] transition-all shadow-lg hover:scale-105 active:scale-95 text-center flex items-center justify-center w-full md:w-auto"
             >
               View FAQs

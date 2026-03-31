@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate } from "@tanstack/react-router";
 
 const AboutBanner: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <section className="w-full flex justify-center py-10 bg-white">
       <div className="relative w-full max-w-[800px] px-6 flex flex-col items-center text-center">
@@ -37,7 +39,7 @@ const AboutBanner: React.FC = () => {
               The vision of MCZMA is to achieve sustainable and balanced development along Maharashtra's coastline. It focuses on conserving fragile ecosystems like mangroves and wetlands. It aims to maintain long-term ecological stability while supporting economic growth.
             </p>
           </div>
-          <button className="mt-2 px-8 py-3 cursor-pointer bg-[#043174] hover:bg-[#2B8EEF] text-white text-[15px] font-medium rounded-2xl transition-colors duration-200">
+          <button onClick={() => navigate({ to: '/about' })} className="mt-2 px-8 py-3 cursor-pointer bg-[#043174] hover:bg-[#2B8EEF] text-white text-[15px] font-medium rounded-2xl transition-colors duration-200">
             Read More
           </button>
         </div>

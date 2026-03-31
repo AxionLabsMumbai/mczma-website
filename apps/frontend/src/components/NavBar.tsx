@@ -8,7 +8,7 @@ const navItems = [
   { name: 'CZMP', path: '/czmp' },
   { name: 'Notifications & Circulars', path: '/notifications' },
   { name: 'How to apply', path: '/how-to-apply' },
-  { name: 'Apply on Parivesh 2.0', path: '/apply-parivesh' },
+  { name: 'Apply on Parivesh 2.0', path: '/apply-parivesh', external: 'https://parivesh.nic.in/' },
   { name: 'Fees Submission', path: '/fees-submission' },
 ];
 
@@ -195,7 +195,7 @@ export default function NavBar() {
             {navItems.map((item) => (
               <div
                 key={item.name}
-                onClick={() => navigate({ to: item.path })}
+                onClick={() => item.external ? window.open(item.external, '_blank', 'noopener,noreferrer') : navigate({ to: item.path })}
                 className="whitespace-nowrap cursor-pointer hover:text-[#0085E2] transition-colors py-4"
               >
                 {item.name}
@@ -206,7 +206,7 @@ export default function NavBar() {
 
             {/* Login */}
             <div
-              onClick={() => navigate({ to: '/login' })}
+              onClick={() => navigate({ to: '/login' as any })}
               className="flex items-center gap-1.5 whitespace-nowrap cursor-pointer text-[#C0392B] hover:text-[#96281B] transition-colors py-4"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -220,7 +220,7 @@ export default function NavBar() {
 
             {/* Register */}
             <div
-              onClick={() => navigate({ to: '/register' })}
+              onClick={() => navigate({ to: '/register' as any })}
               className="flex items-center gap-1.5 whitespace-nowrap cursor-pointer text-[#C0392B] hover:text-[#96281B] transition-colors py-4"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

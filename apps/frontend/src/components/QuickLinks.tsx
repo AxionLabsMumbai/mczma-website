@@ -16,16 +16,17 @@ import { useNavigate } from "@tanstack/react-router";
 interface QuickLink {
   id: number;
   title: string;
+  external?: string;
   icon: React.ReactNode;
   path: string;
 }
 
 const quickLinks: QuickLink[] = [
   { id: 1, title: "Wetland",        icon: <Waves className="w-8 h-8 text-blue-500" />,          path: "/wetland" },
-  { id: 2, title: "Complaints",     icon: <MessageCircle className="w-8 h-8 text-blue-500" />,  path: "/complaints" },
+  { id: 2, title: "Complaints",     icon: <MessageCircle className="w-8 h-8 text-blue-500" />,  path: "/complaints", external: "https://grievances.maharashtra.gov.in/en" },
   { id: 3, title: "Projects",       icon: <FolderKanban className="w-8 h-8 text-blue-500" />,   path: "/projects" },
   { id: 4, title: "DCZMC",          icon: <ClipboardCheck className="w-8 h-8 text-blue-500" />, path: "/dczmc" },
-  { id: 5, title: "RTI",            icon: <HandCoins className="w-8 h-8 text-blue-500" />,      path: "/rti" },
+  { id: 5, title: "RTI",            icon: <HandCoins className="w-8 h-8 text-blue-500" />,      path: "/rti", external: "https://rtionline.maharashtra.gov.in/" },
   { id: 6, title: "Court Matters",  icon: <Scale className="w-8 h-8 text-blue-500" />,          path: "/court-matters" },
 ];
 
@@ -34,7 +35,7 @@ const QuickLinkCard: React.FC<{ link: QuickLink }> = ({ link }) => {
 
   return (
     <div
-      onClick={() => navigate({ to: link.path })}
+      onClick={() => link.external ? window.open(link.external, '_blank', 'noopener,noreferrer') : navigate({ to: link.path })}
       className="w-full min-h-[120px] h-auto p-4 md:p-5 border border-gray-100 rounded-[20px] md:rounded-[24px] bg-white flex items-center justify-between group cursor-pointer hover:shadow-[0_10px_30px_-10px_rgba(0,0,0,0.08)] hover:border-blue-100 transition-all duration-300"
     >
       <div className="flex items-center gap-4">
@@ -55,7 +56,7 @@ const QuickLinkCard: React.FC<{ link: QuickLink }> = ({ link }) => {
 const QuickLinks: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [mobileIndex, setMobileIndex] = useState(0);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
   const [viewportWidth, setViewportWidth] = useState(0);
 

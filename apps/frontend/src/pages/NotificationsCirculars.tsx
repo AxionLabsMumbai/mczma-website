@@ -89,7 +89,6 @@ const Dropdown: React.FC<DropdownProps> = ({ label, options, value, onChange }) 
 
 /* ── Main page ── */
 const NotificationsCirculars: React.FC = () => {
-  const [selectedCategory, setSelectedCategory] = useState("- Any -");
   const [contentCategory, setContentCategory] = useState("- Any -");
   const [dateInput, setDateInput] = useState("");
   const [appliedCategory, setAppliedCategory] = useState("- Any -");
@@ -97,13 +96,12 @@ const NotificationsCirculars: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleSearch = () => {
-    setAppliedCategory(contentCategory !== "- Any -" ? contentCategory : selectedCategory);
+    setAppliedCategory(contentCategory);
     setAppliedDate(dateInput);
     setCurrentPage(1);
   };
 
   const handleReset = () => {
-    setSelectedCategory("- Any -");
     setContentCategory("- Any -");
     setDateInput("");
     setAppliedCategory("- Any -");
@@ -148,13 +146,6 @@ const NotificationsCirculars: React.FC = () => {
           {/* Filter Bar */}
           <div className="border border-gray-200 rounded-2xl px-6 py-5 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
             <div className="flex flex-wrap items-end gap-5">
-
-              <Dropdown
-                label="Select"
-                options={categoryOptions}
-                value={selectedCategory}
-                onChange={setSelectedCategory}
-              />
 
               {/* Date */}
               <div className="flex flex-col gap-1.5 min-w-[160px]">
