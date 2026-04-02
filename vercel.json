@@ -1,7 +1,6 @@
 {
-  "framework": null,
-  "buildCommand": "pnpm --filter frontend build",
-  "outputDirectory": "dist",
+  "buildCommand": "cd apps/frontend && pnpm build",
+  "outputDirectory": "apps/frontend/dist",
   "installCommand": "pnpm install",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
