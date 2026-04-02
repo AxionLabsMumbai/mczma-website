@@ -30,7 +30,7 @@ const allNotifications: NotificationItem[] = [
 ];
 
 const categoryOptions = ["- Any -", "Notification", "Circular", "Order"];
-const ITEMS_PER_PAGE = 9;
+const ITEMS_PER_PAGE = 12;
 
 /* ── Reusable custom dropdown ── */
 interface DropdownProps {
@@ -204,7 +204,7 @@ const NotificationsCirculars: React.FC = () => {
               <p className="text-[13px] text-gray-400 mt-1">Try adjusting the filters above.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {paginated.map((item) => (
                 <div
                   key={item.id}

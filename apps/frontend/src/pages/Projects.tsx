@@ -33,7 +33,7 @@ const projectItems: ProjectItem[] = [
 
 const categoryOptions = ["- Any -", "Infrastructure", "Environment", "Tourism", "Fisheries"];
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 12;
 
 /* ── Custom Dropdown ── */
 interface DropdownProps {
@@ -207,7 +207,7 @@ const Projects: React.FC = () => {
               <p className="text-[13px] text-gray-300">Try a different title or category.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {paginated.map((item) => (
                 <DocCard
                   key={item.id}

@@ -20,7 +20,7 @@ const dczmcDocs = [
   { id: 14, title: "DCZMC Inspection Report – Sindhudurg District" },
 ];
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 12;
 
 const DCZMC: React.FC = () => {
   const [page, setPage] = useState(1);
@@ -67,7 +67,7 @@ const DCZMC: React.FC = () => {
               <p className="text-[15px] font-semibold text-gray-400">No records found.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {paginated.map((doc) => (
                 <DocCard key={doc.id} title={doc.title} />
               ))}

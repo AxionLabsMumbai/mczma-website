@@ -31,7 +31,7 @@ const agendaItems: AgendaItem[] = [
   { id: 18, meetingNo: "176", date: "16-Aug-2024", pdfUrl: "#" },
 ];
 
-const PAGE_SIZE = 6;
+const PAGE_SIZE = 12;
 
 const MeetingAgenda: React.FC = () => {
   const [dateInput, setDateInput] = useState("");
@@ -159,7 +159,7 @@ const MeetingAgenda: React.FC = () => {
               <p className="text-[13px] text-gray-300">Try a different date or meeting number.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {paginated.map((item) => (
                 <MeetingDocCard
                   key={item.id}

@@ -1,19 +1,39 @@
 import React, { useState } from "react";
-import { RotateCcw, Search, FileText } from "lucide-react";
+import { RotateCcw, Search, FileText, ChevronLeft, ChevronRight } from "lucide-react";
 import PageBanner from "../components/PageBanner";
 import { whatsNewItems } from "../data/whatsNewData";
 import DocCard from "../components/DocCard";
 
+const PAGE_SIZE = 12;
+
 const WhatsNew: React.FC = () => {
   const [query, setQuery] = useState("");
   const [applied, setApplied] = useState("");
+  const [page, setPage] = useState(1);
 
-  const handleSearch = () => setApplied(query);
-  const handleReset = () => { setQuery(""); setApplied(""); };
+  const handleSearch = () => { setApplied(query); setPage(1); };
+  const handleReset = () => { setQuery(""); setApplied(""); setPage(1); };
 
   const filtered = whatsNewItems.filter((item) =>
     !applied || item.text.toLowerCase().includes(applied.toLowerCase())
   );
+
+  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const getPageNumbers = () => {
+    const pages: (number | "...")[] = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      pages.push(1);
+      if (page > 3) pages.push("...");
+      for (let i = Math.max(2, page - 1); i <= Math.min(totalPages - 1, page + 1); i++) pages.push(i);
+      if (page < totalPages - 2) pages.push("...");
+      pages.push(totalPages);
+    }
+    return pages;
+  };
 
   return (
     <div className="min-h-screen bg-white font-helvetica">
@@ -64,7 +84,7 @@ const WhatsNew: React.FC = () => {
 
           {/* Results count */}
           <p className="text-[13px] text-gray-400 -mt-2">
-            Showing {filtered.length} of {whatsNewItems.length} records
+            Showing {paginated.length} of {filtered.length} records
             {applied && <span> for "<span className="font-medium text-gray-600">{applied}</span>"</span>}
           </p>
 
@@ -76,8 +96,8 @@ const WhatsNew: React.FC = () => {
               <p className="text-[13px] text-gray-300">Try a different search term.</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {filtered.map((item) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {paginated.map((item) => (
                 <DocCard
                   key={item.id}
                   title={item.text}
@@ -85,6 +105,45 @@ const WhatsNew: React.FC = () => {
                   pdfUrl={item.pdfUrl}
                 />
               ))}
+            </div>
+          )}
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-1.5 mt-2">
+              <button
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className="w-9 h-9 flex items-center justify-center rounded-xl border border-gray-200 text-gray-500 hover:border-[#043174] hover:text-[#043174] disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              {getPageNumbers().map((p, idx) =>
+                p === "..." ? (
+                  <span key={`ellipsis-${idx}`} className="w-9 h-9 flex items-center justify-center text-[13px] text-gray-400">…</span>
+                ) : (
+                  <button
+                    key={p}
+                    onClick={() => setPage(p)}
+                    className={`w-9 h-9 flex items-center justify-center rounded-xl text-[13px] font-medium border transition-colors cursor-pointer ${
+                      page === p
+                        ? "bg-[#043174] text-white border-[#043174]"
+                        : "border-gray-200 text-gray-600 hover:border-[#043174] hover:text-[#043174]"
+                    }`}
+                  >
+                    {p}
+                  </button>
+                )
+              )}
+
+              <button
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                className="w-9 h-9 flex items-center justify-center rounded-xl border border-gray-200 text-gray-500 hover:border-[#043174] hover:text-[#043174] disabled:opacity-30 disabled:cursor-not-allowed transition-colors cursor-pointer"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
             </div>
           )}
 
