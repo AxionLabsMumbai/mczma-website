@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
     <footer className="w-full flex flex-col items-center font-helvetica mt-[30px] overflow-hidden">
 
       {/* 1. CALL TO ACTION */}
-      <div className="relative w-full max-w-[1100px] h-auto min-h-[320px] rounded-[24px] md:rounded-[48px] overflow-hidden -mb-32 z-10 flex flex-col items-center justify-center text-center px-4 md:px-6 shadow-2xl mx-6 md:mx-4">
+      <div className="relative w-[calc(100%-3rem)] md:w-full max-w-[1100px] h-auto min-h-[320px] rounded-[24px] md:rounded-[48px] overflow-hidden -mb-32 z-10 flex flex-col items-center justify-center text-center px-4 md:px-6 shadow-2xl mx-auto md:mx-4">
         {/* Background image */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
@@ -24,16 +24,16 @@ const Footer: React.FC = () => {
           <p className="text-[14px] md:text-[18px] text-white mb-8 md:mb-10 max-w-[600px] font-normal leading-relaxed">
             Our team is here to help you with coastal zone clearances, authorizations, and environmental compliance.
           </p>
-          <div className="flex flex-col md:flex-row gap-4 mb-[20px] w-full md:w-auto">
+          <div className="flex flex-col md:flex-row gap-3 mb-[20px] w-auto">
             <Link
               to="/contact-us"
-              className="px-5 py-2 md:px-10 md:py-4 bg-white text-[#043174] rounded-2xl font-medium text-[13px] md:text-[18px] lg:text-[22px] hover:bg-blue-50 transition-all shadow-lg hover:scale-105 active:scale-95 text-center flex items-center justify-center w-full md:w-auto"
+              className="px-8 py-3 md:px-10 md:py-4 bg-white text-[#043174] rounded-2xl font-medium text-[15px] md:text-[18px] lg:text-[22px] hover:bg-blue-50 transition-all shadow-lg hover:scale-105 active:scale-95 text-center flex items-center justify-center"
             >
               Contact Us
             </Link>
             <Link
               to="/faq"
-              className="px-5 py-2 md:px-10 md:py-4 bg-[#043174] border border-white/20 text-white rounded-2xl font-medium text-[13px] md:text-[18px] lg:text-[22px] hover:bg-[#007ee0] transition-all shadow-lg hover:scale-105 active:scale-95 text-center flex items-center justify-center w-full md:w-auto"
+              className="px-8 py-3 md:px-10 md:py-4 bg-[#043174] border border-white/20 text-white rounded-2xl font-medium text-[15px] md:text-[18px] lg:text-[22px] hover:bg-[#007ee0] transition-all shadow-lg hover:scale-105 active:scale-95 text-center flex items-center justify-center"
             >
               View FAQs
             </Link>
