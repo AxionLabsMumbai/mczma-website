@@ -15,8 +15,8 @@ const InfoSection: React.FC = () => {
   const displayItems = whatsNewItems.slice(0, TOP_N);
 
   return (
-    <section className="w-full flex justify-center pt-25 pb-10 bg-white">
-      <div className="w-full max-w-[1202px] px-4 flex flex-col md:flex-row justify-center gap-30">
+    <section className="w-full flex justify-center pt-8 md:pt-25 pb-10 bg-white">
+      <div className="w-full max-w-[1202px] px-4 flex flex-col md:flex-row justify-center gap-8 md:gap-16">
 
         {/* Left: What's New */}
         <div className="relative w-full md:w-[380px] shrink-0">
@@ -29,7 +29,7 @@ const InfoSection: React.FC = () => {
           />
           {/* Content overlaid on the image */}
           <div className="relative z-10 flex flex-col px-6 pt-10 pb-6">
-            <h2 className="text-[24px] flex justify-center md:text-[28px] font-bold text-white mb-4">
+            <h2 className="text-[20px] flex justify-center md:text-[28px] font-bold text-white mb-4">
               What's New
             </h2>
             <div className="flex flex-col divide-y divide-white/20 max-h-[300px] overflow-y-auto scrollbar-elegant">
@@ -55,21 +55,21 @@ const InfoSection: React.FC = () => {
 
         {/* Right: Meeting of MCZMA */}
         <div className="flex flex-col w-full md:w-[500px] shrink-0">
-          <h2 className="text-[28px] md:text-[36px] font-bold text-[#111111] mb-5">
+          <h2 className="text-[20px] md:text-[36px] font-bold text-[#111111] mb-4 md:mb-5">
             Meeting of MCZMA
           </h2>
           <div className="flex flex-col gap-3 max-h-[360px] overflow-y-auto pr-1">
             {meetingItems.map((item, idx) => (
               <div
                 key={idx}
-                className="flex items-center justify-between gap-1 border border-gray-200 rounded-2xl px-5 py-4 bg-white"
+                className="flex items-center justify-between gap-2 border border-gray-200 rounded-2xl px-4 md:px-5 py-3 md:py-4 bg-white"
               >
-                <span className="text-[14px] md:text-[15px] font-semibold text-[#1A1A1A] leading-snug">
+                <span className="text-[13px] md:text-[15px] font-semibold text-[#1A1A1A] leading-snug min-w-0">
                   {item.label}
                 </span>
                 <button
                   onClick={() => item.path && navigate({ to: item.path })}
-                  className="shrink-0 px-4 cursor-pointer py-1.5 border border-[#043174] text-[#043174] text-[13px] font-medium rounded-xl hover:bg-[#EBF5FF] transition-colors duration-200"
+                  className="shrink-0 px-3 md:px-4 cursor-pointer py-1.5 border border-[#043174] text-[#043174] text-[12px] md:text-[13px] font-medium rounded-xl hover:bg-[#EBF5FF] transition-colors duration-200"
                 >
                   Read More
                 </button>

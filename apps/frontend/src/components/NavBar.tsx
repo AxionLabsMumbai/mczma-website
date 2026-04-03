@@ -20,6 +20,7 @@ export default function NavBar() {
   const [fontOffset, setFontOffset] = useState(0);
   const [searchText, setSearchText] = useState('');
   const [isSpeechOn, setIsSpeechOn] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Font size
   useEffect(() => {
@@ -62,188 +63,193 @@ export default function NavBar() {
 
   return (
     <div className="sticky top-0 z-[100] bg-white shadow-sm font-helvetica">
-      {/* Top Blue Bar */}
-      <div className="w-full bg-[#043174] py-2 md:py-0">
-        <div className="w-full px-4 md:container md:mx-auto md:px-8 flex flex-col md:flex-row md:flex-nowrap md:items-center md:justify-end md:h-[36px] md:gap-x-[20px] text-white text-[10px] md:text-[12px] gap-y-2 md:gap-y-0">
+
+      {/* Top Blue Bar — desktop only */}
+      <div className="hidden md:block w-full bg-[#043174]">
+        <div className="w-full md:container md:mx-auto md:px-8 flex flex-row flex-nowrap items-center justify-end h-[36px] gap-x-[20px] text-white text-[12px]">
 
           {/* Links Group */}
-          <div className="flex items-center justify-evenly pb-1.5 border-b border-white/15 md:border-0 md:pb-0 md:justify-start md:gap-3">
-            <div
-              onClick={() => navigate({ to: '/contact-us' })}
-              className="whitespace-nowrap cursor-pointer hover:underline transition-colors"
-            >
-              Contact Us
-            </div>
-            <div
-              onClick={() => navigate({ to: '/faq' })}
-              className="whitespace-nowrap cursor-pointer hover:underline transition-colors"
-            >
-              FAQs
-            </div>
+          <div className="flex items-center gap-3">
+            <div onClick={() => navigate({ to: '/contact-us' })} className="whitespace-nowrap cursor-pointer hover:underline transition-colors">Contact Us</div>
+            <div onClick={() => navigate({ to: '/faq' })} className="whitespace-nowrap cursor-pointer hover:underline transition-colors">FAQs</div>
           </div>
 
-          <div className="hidden md:block opacity-50">|</div>
+          <div className="opacity-50">|</div>
 
-          {/* Font Size, Language, Speech, Search Group */}
-          <div className="flex items-center w-full md:w-auto gap-2 md:gap-[16px]">
-            {/* Font size */}
-            <div className="flex items-center gap-2">
-              <button onClick={() => setFontOffset(prev => Math.max(prev - 2, -4))} className="hover:underline cursor-pointer">A-</button>
-              <button onClick={() => setFontOffset(0)} className="hover:underline cursor-pointer">A</button>
-              <button onClick={() => setFontOffset(prev => Math.min(prev + 2, 4))} className="hover:underline cursor-pointer">A+</button>
-            </div>
+          {/* Font Size */}
+          <div className="flex items-center gap-2">
+            <button onClick={() => setFontOffset(prev => Math.max(prev - 2, -4))} className="hover:underline cursor-pointer">A-</button>
+            <button onClick={() => setFontOffset(0)} className="hover:underline cursor-pointer">A</button>
+            <button onClick={() => setFontOffset(prev => Math.min(prev + 2, 4))} className="hover:underline cursor-pointer">A+</button>
+          </div>
 
-            <div className="opacity-40">|</div>
+          <div className="opacity-40">|</div>
 
-            {/* Language dropdown */}
-            <div
-              className="relative flex items-center gap-[6px] md:gap-[10px] cursor-pointer"
-              onMouseEnter={() => setIsLangOpen(true)}
-              onMouseLeave={() => setIsLangOpen(false)}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-[13px] h-[13px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <line x1="2" y1="12" x2="22" y2="12" />
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-              </svg>
-              <span>{language}</span>
-              <svg
-                className={`w-2 h-2 transition-transform ${isLangOpen ? 'rotate-180' : ''}`}
-                viewBox="0 0 10 6"
-                fill="none"
-              >
-                <path d="M1 1l4 4 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-              {isLangOpen && (
-                <div className="absolute top-full right-0 pt-1 z-50">
-                  <div className="w-[100px] bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-gray-100 py-2">
-                    {(['English', 'Marathi', 'Hindi'] as const)
-                      .filter(lang => lang !== language)
-                      .map(lang => (
-                        <button
-                          key={lang}
-                          className="w-full text-[12px] py-2 px-3 text-gray-700 hover:text-[#0085E2] hover:bg-blue-50 transition-colors text-left cursor-pointer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setIsLangOpen(false);
-                            setLanguage(lang);
-                          }}
-                        >
-                          {lang}
-                        </button>
-                      ))}
-                  </div>
+          {/* Language dropdown */}
+          <div
+            className="relative flex items-center gap-[10px] cursor-pointer"
+            onMouseEnter={() => setIsLangOpen(true)}
+            onMouseLeave={() => setIsLangOpen(false)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-[13px] h-[13px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+            <span>{language}</span>
+            <svg className={`w-2 h-2 transition-transform ${isLangOpen ? 'rotate-180' : ''}`} viewBox="0 0 10 6" fill="none">
+              <path d="M1 1l4 4 4-4" stroke="white" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            {isLangOpen && (
+              <div className="absolute top-full right-0 pt-1 z-50">
+                <div className="w-[100px] bg-white rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.12)] border border-gray-100 py-2">
+                  {(['English', 'Marathi', 'Hindi'] as const).filter(lang => lang !== language).map(lang => (
+                    <button key={lang} className="w-full text-[12px] py-2 px-3 text-gray-700 hover:text-[#0085E2] hover:bg-blue-50 transition-colors text-left cursor-pointer"
+                      onClick={(e) => { e.stopPropagation(); setIsLangOpen(false); setLanguage(lang); }}>
+                      {lang}
+                    </button>
+                  ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
+          </div>
 
-            {/* Speech Toggle */}
-            <div
-              className={`rounded-[8px] border border-white/30 cursor-pointer h-[24px] md:h-[28px] px-2 flex items-center justify-center gap-1 transition-all duration-300 ${isSpeechOn ? 'bg-white/20' : 'hover:bg-white/10'}`}
-              onClick={() => setIsSpeechOn(prev => !prev)}
-              title={isSpeechOn ? 'Turn Speech Off' : 'Turn Speech On'}
-            >
-              {isSpeechOn ? (
-                <>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-                  </svg>
-                  <span className="text-[10px] md:text-[12px] font-medium hidden md:block">Speech On</span>
-                </>
-              ) : (
-                <>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-80">
-                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                    <line x1="23" y1="9" x2="17" y2="15" />
-                    <line x1="17" y1="9" x2="23" y2="15" />
-                  </svg>
-                  <span className="text-[10px] md:text-[12px] font-medium hidden md:block">Speech Off</span>
-                </>
-              )}
-            </div>
+          {/* Speech Toggle */}
+          <div
+            className={`rounded-[8px] border border-white/30 cursor-pointer h-[28px] px-2 flex items-center justify-center gap-1 transition-all duration-300 ${isSpeechOn ? 'bg-white/20' : 'hover:bg-white/10'}`}
+            onClick={() => setIsSpeechOn(prev => !prev)}
+            title={isSpeechOn ? 'Turn Speech Off' : 'Turn Speech On'}
+          >
+            {isSpeechOn ? (
+              <>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                </svg>
+                <span className="text-[12px] font-medium">Speech On</span>
+              </>
+            ) : (
+              <>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="opacity-80">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                  <line x1="23" y1="9" x2="17" y2="15" />
+                  <line x1="17" y1="9" x2="23" y2="15" />
+                </svg>
+                <span className="text-[12px] font-medium">Speech Off</span>
+              </>
+            )}
+          </div>
 
-            {/* Search */}
-            <div className="rounded-[8px] bg-white/20 flex-1 md:flex-none md:w-[180px] h-[24px] md:h-[28px] flex items-center gap-[6px] px-[8px] hover:bg-white/30 transition-colors focus-within:bg-white/30">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="opacity-90 shrink-0">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-              <input
-                type="text"
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                placeholder="Search"
-                className="bg-transparent border-none outline-none text-white placeholder-white/80 text-[10px] md:text-[12px] w-full"
-              />
-            </div>
+          {/* Search */}
+          <div className="rounded-[8px] bg-white/20 w-[180px] h-[28px] flex items-center gap-[6px] px-[8px] hover:bg-white/30 transition-colors focus-within:bg-white/30">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="opacity-90 shrink-0">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" value={searchText} onChange={(e) => setSearchText(e.target.value)} placeholder="Search"
+              className="bg-transparent border-none outline-none text-white placeholder-white/80 text-[12px] w-full" />
           </div>
         </div>
       </div>
 
       {/* White Navbar */}
-      <div className="w-full min-h-[60px] h-auto flex items-center bg-white py-3 px-4 shadow-sm">
-        <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
+      <div className="w-full h-[60px] flex items-center bg-white px-4 md:px-8 shadow-sm">
+        <div className="w-full flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center shrink-0">
-            <img src="/assets/mczma (2).png" alt="MCZMA Logo" className="h-12 w-auto" />
+            <img src="/assets/mczma (2).png" alt="MCZMA Logo" className="h-10 md:h-12 w-auto" />
           </Link>
 
           {/* Desktop Nav Items */}
           <div className="hidden xl:flex items-center gap-x-4 text-[14px] text-black">
             {navItems.map((item) => (
-              <div
-                key={item.name}
+              <div key={item.name}
                 onClick={() => item.external ? window.open(item.external, '_blank', 'noopener,noreferrer') : navigate({ to: item.path })}
-                className="whitespace-nowrap cursor-pointer hover:text-[#0085E2] transition-colors py-4"
-              >
+                className="whitespace-nowrap cursor-pointer hover:text-[#0085E2] transition-colors py-4">
                 {item.name}
               </div>
             ))}
-
             <span className="text-gray-300">|</span>
-
-            {/* Login */}
-            <div
-              onClick={() => navigate({ to: '/login' as any })}
-              className="flex items-center gap-1.5 whitespace-nowrap cursor-pointer text-[#C0392B] hover:text-[#96281B] transition-colors py-4"
-            >
+            <div onClick={() => navigate({ to: '/login' as any })}
+              className="flex items-center gap-1.5 whitespace-nowrap cursor-pointer text-[#C0392B] hover:text-[#96281B] transition-colors py-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                <path d="M7 11V7a5 5 0 0 1 9.9-1" />
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 9.9-1" />
               </svg>
               Login
             </div>
-
             <span className="text-gray-300">|</span>
-
-            {/* Register */}
-            <div
-              onClick={() => navigate({ to: '/register' as any })}
-              className="flex items-center gap-1.5 whitespace-nowrap cursor-pointer text-[#C0392B] hover:text-[#96281B] transition-colors py-4"
-            >
+            <div onClick={() => navigate({ to: '/register' as any })}
+              className="flex items-center gap-1.5 whitespace-nowrap cursor-pointer text-[#C0392B] hover:text-[#96281B] transition-colors py-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
-                <polyline points="10 9 9 9 8 9" />
+                <polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" />
               </svg>
               Register
             </div>
           </div>
 
           {/* Mobile hamburger */}
-          <button className="xl:hidden p-2 text-gray-700 hover:text-[#0085E2]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
+          <button className="xl:hidden p-2 text-gray-700 hover:text-[#0085E2] transition-colors"
+            onClick={() => setIsMobileMenuOpen(prev => !prev)} aria-label="Toggle navigation menu">
+            {isMobileMenuOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            )}
           </button>
         </div>
       </div>
+
+      {/* Mobile Navigation Drawer */}
+      {isMobileMenuOpen && (
+        <div className="xl:hidden bg-white border-t border-gray-100 shadow-lg max-h-[80vh] overflow-y-auto">
+          <nav className="px-4 py-3 flex flex-col gap-1">
+            {navItems.map((item) => (
+              <div key={item.name}
+                onClick={() => { item.external ? window.open(item.external, '_blank', 'noopener,noreferrer') : navigate({ to: item.path }); setIsMobileMenuOpen(false); }}
+                className="px-4 py-3 text-[14px] font-medium text-gray-700 hover:text-[#0085E2] hover:bg-blue-50/60 rounded-xl cursor-pointer transition-colors">
+                {item.name}
+              </div>
+            ))}
+
+            {/* Utility links */}
+            <div className="border-t border-gray-100 mt-1 pt-1 flex flex-col gap-1">
+              <div onClick={() => { navigate({ to: '/contact-us' }); setIsMobileMenuOpen(false); }}
+                className="px-4 py-3 text-[14px] font-medium text-gray-600 hover:text-[#0085E2] hover:bg-blue-50/60 rounded-xl cursor-pointer transition-colors">
+                Contact Us
+              </div>
+              <div onClick={() => { navigate({ to: '/faq' }); setIsMobileMenuOpen(false); }}
+                className="px-4 py-3 text-[14px] font-medium text-gray-600 hover:text-[#0085E2] hover:bg-blue-50/60 rounded-xl cursor-pointer transition-colors">
+                FAQs
+              </div>
+            </div>
+
+            {/* Login / Register */}
+            <div className="border-t border-gray-100 mt-1 pt-1 flex flex-col gap-1">
+              <div onClick={() => { navigate({ to: '/login' as any }); setIsMobileMenuOpen(false); }}
+                className="px-4 py-3 text-[14px] font-medium text-[#C0392B] hover:bg-red-50 rounded-xl cursor-pointer transition-colors flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0 1 9.9-1" />
+                </svg>
+                Login
+              </div>
+              <div onClick={() => { navigate({ to: '/register' as any }); setIsMobileMenuOpen(false); }}
+                className="px-4 py-3 text-[14px] font-medium text-[#C0392B] hover:bg-red-50 rounded-xl cursor-pointer transition-colors flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" />
+                </svg>
+                Register
+              </div>
+            </div>
+          </nav>
+        </div>
+      )}
     </div>
   );
 }

@@ -23,7 +23,7 @@ const PageBanner: React.FC<PageBannerProps> = ({ image, title, subtitle }) => {
 
         {/* Content — centered */}
         <div className="relative z-10 h-full flex flex-col items-center justify-center gap-2 px-6 text-center">
-          <h1 className="text-[30px] md:text-[42px] font-bold text-[#111111] leading-tight">
+          <h1 className="text-[22px] sm:text-[28px] md:text-[42px] font-bold text-[#111111] leading-tight">
             {title}
           </h1>
           {subtitle && (

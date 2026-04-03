@@ -87,15 +87,15 @@ const MeetingMOM: React.FC = () => {
         subtitle="Official minutes from MCZMA meetings — browse by date or meeting number"
       />
 
-      <section className="w-full flex justify-center pb-16 bg-white">
+      <section className="w-full flex justify-center pt-4 pb-16 bg-white">
         <div className="w-full max-w-[1100px] px-4 flex flex-col gap-6">
 
           {/* Filter bar */}
-          <div className="border border-gray-200 rounded-2xl px-6 py-5 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
-            <div className="flex flex-wrap items-end gap-5">
+          <div className="border border-gray-200 rounded-2xl px-4 sm:px-6 py-4 sm:py-5 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+            <div className="flex flex-wrap items-end gap-4">
 
               {/* Date input */}
-              <div className="flex flex-col gap-1.5 w-[200px]">
+              <div className="flex flex-col gap-1.5 w-full sm:w-[200px]">
                 <label className="text-[12px] font-semibold text-[#555] uppercase tracking-wide">Date</label>
                 <div className="relative">
                   <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -109,7 +109,7 @@ const MeetingMOM: React.FC = () => {
               </div>
 
               {/* Meeting no input */}
-              <div className="flex flex-col gap-1.5 w-[220px]">
+              <div className="flex flex-col gap-1.5 w-full sm:w-[220px]">
                 <label className="text-[12px] font-semibold text-[#555] uppercase tracking-wide">Search by Meeting No.</label>
                 <input
                   type="text"
@@ -122,17 +122,17 @@ const MeetingMOM: React.FC = () => {
               </div>
 
               {/* Buttons */}
-              <div className="flex items-end gap-2 pb-0.5 ml-auto">
+              <div className="flex items-end gap-2 w-full sm:w-auto sm:ml-auto">
                 <button
                   onClick={handleReset}
-                  className="flex items-center gap-1.5 px-5 py-2.5 bg-[#043174] hover:bg-[#032660] text-white text-[13px] font-medium rounded-xl shadow-sm transition-colors cursor-pointer"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#043174] hover:bg-[#032660] text-white text-[13px] font-medium rounded-xl shadow-sm transition-colors cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   Reset
                 </button>
                 <button
                   onClick={handleSearch}
-                  className="flex items-center gap-1.5 px-5 py-2.5 bg-[#6c757d] hover:bg-[#5a6268] text-white text-[13px] font-medium rounded-xl shadow-sm transition-colors cursor-pointer"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#6c757d] hover:bg-[#5a6268] text-white text-[13px] font-medium rounded-xl shadow-sm transition-colors cursor-pointer"
                 >
                   <Search className="w-3.5 h-3.5" />
                   Search
@@ -170,7 +170,7 @@ const MeetingMOM: React.FC = () => {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-1.5 mt-2">
+            <div className="flex items-center justify-center gap-1.5 mt-2 flex-wrap">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}

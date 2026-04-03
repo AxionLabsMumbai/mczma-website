@@ -86,13 +86,13 @@ const ImageSlider = () => {
       </div>
 
       {/* Navigation Bars */}
-      <div className="flex justify-center gap-2 mt-4 pb-4 ">
+      <div className="flex justify-center gap-1 sm:gap-2 mt-4 pb-4">
         {IMAGES.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
-            className="relative cursor-pointer h-[4px] w-10 rounded-full bg-gray-200 overflow-hidden group hover:bg-gray-300 transition-colors duration-200"
+            className="relative cursor-pointer h-[3px] sm:h-[4px] w-5 sm:w-10 rounded-full bg-gray-200 overflow-hidden group hover:bg-gray-300 transition-colors duration-200"
           >
             {index === currentIndex ? (
               <span

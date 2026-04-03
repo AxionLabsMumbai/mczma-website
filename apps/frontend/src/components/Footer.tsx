@@ -27,13 +27,13 @@ const Footer: React.FC = () => {
           <div className="flex flex-col md:flex-row gap-4 mb-[20px] w-full md:w-auto">
             <Link
               to="/contact-us"
-              className="px-10 py-4 bg-white text-[#043174] rounded-2xl font-medium text-[18px] md:text-[22px] hover:bg-blue-50 transition-all shadow-lg hover:scale-105 active:scale-95 text-center flex items-center justify-center w-full md:w-auto"
+              className="px-8 py-3 md:px-10 md:py-4 bg-white text-[#043174] rounded-2xl font-medium text-[15px] md:text-[18px] lg:text-[22px] hover:bg-blue-50 transition-all shadow-lg hover:scale-105 active:scale-95 text-center flex items-center justify-center w-full md:w-auto"
             >
               Contact Us
             </Link>
             <Link
               to="/faq"
-              className="px-10 py-4 bg-[#043174] border border-white/20 text-white rounded-2xl font-medium text-[18px] md:text-[22px] hover:bg-[#007ee0] transition-all shadow-lg hover:scale-105 active:scale-95 text-center flex items-center justify-center w-full md:w-auto"
+              className="px-8 py-3 md:px-10 md:py-4 bg-[#043174] border border-white/20 text-white rounded-2xl font-medium text-[15px] md:text-[18px] lg:text-[22px] hover:bg-[#007ee0] transition-all shadow-lg hover:scale-105 active:scale-95 text-center flex items-center justify-center w-full md:w-auto"
             >
               View FAQs
             </Link>
@@ -43,20 +43,19 @@ const Footer: React.FC = () => {
 
       {/* 2. MAIN FOOTER */}
       <div className="w-full bg-[#003458] pt-40 md:pt-48 pb-10 flex flex-col items-center">
-        <div className="w-full max-w-[1282px] grid grid-cols-1 md:grid-cols-12 gap-10 px-6 md:px-4">
+        <div className="w-full max-w-[1282px] grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 px-4 md:px-4">
 
           {/* Column 1: Logo & Address */}
-          <div className="col-span-1 md:col-span-4 flex flex-col gap-6 items-center md:items-start text-center md:text-left">
+          <div className="col-span-1 md:col-span-4 flex flex-col gap-4 md:gap-6 items-start text-left">
             <div className="flex flex-row items-center gap-4">
               <div className="shrink-0 flex items-center justify-center md:ml-[-10px]">
                 <img src="/assets/embelem.svg" alt="Emblem" className="w-[52px] h-[98px] object-contain" />
               </div>
               <div className="w-px h-[77px] bg-white shrink-0" />
               <div className="flex flex-col ml-[10px]">
-                <p className="text-white text-[20px] font-medium leading-tight">Maharashtra Coastal</p>
-                <p className="text-white text-[20px] font-medium leading-tight">Zone Management</p>
-                <p className="text-white text-[20px] font-medium leading-tight">Authority</p>
-
+                <p className="text-white text-[15px] md:text-[20px] font-medium leading-tight">Maharashtra Coastal</p>
+                <p className="text-white text-[15px] md:text-[20px] font-medium leading-tight">Zone Management</p>
+                <p className="text-white text-[15px] md:text-[20px] font-medium leading-tight">Authority</p>
               </div>
             </div>
 
@@ -71,10 +70,10 @@ const Footer: React.FC = () => {
 
           {/* Column 2: Important Links */}
           <div className="col-span-1 md:col-span-8 flex flex-col pt-2">
-            <h4 className="text-white text-[24px] md:text-[30px] font-bold tracking-wider mb-8 uppercase text-center w-full">
+            <h4 className="text-white text-[18px] md:text-[30px] font-bold tracking-wider mb-5 md:mb-8 uppercase text-center w-full">
               Important Links
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 md:gap-y-4 px-4 text-[14px] text-center md:text-left">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-4 md:gap-y-4 text-[14px] text-left">
               <ul className="flex flex-col gap-3">
                 <li><a href="http://supremecourtofindia.nic.in/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-blue-300 transition-colors">Supreme Court of India</a></li>
                 <li><a href="http://bombayhighcourt.nic.in/index.html" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-blue-300 transition-colors">High Court of Bombay</a></li>
@@ -110,7 +109,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* 3. SUB-FOOTER */}
-        <div className="w-full max-w-[1282px] mt-10 pt-10 border-t border-white/10 flex flex-col-reverse md:flex-row justify-between items-center text-white text-[13px] px-6 relative gap-8 md:gap-0">
+        <div className="w-full max-w-[1282px] mt-8 pt-8 border-t border-white/10 flex flex-col-reverse md:flex-row justify-between items-center text-white text-[13px] px-4 relative gap-4 md:gap-0">
           <div className="flex flex-col gap-2 text-center md:text-left">
             <p className="text-[14px] md:text-[16px] opacity-50">
               Copyright {currentYear}, Maharashtra Coastal Zone Management Authority. <p>All Rights Reserved.</p>

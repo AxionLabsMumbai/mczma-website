@@ -42,8 +42,8 @@ const AboutUs: React.FC = () => {
         <div className="w-full max-w-[900px] px-6 flex flex-col gap-10">
 
           {/* Intro card */}
-          <div className="bg-white border border-gray-100 rounded-2xl p-8 shadow-[0_2px_16px_rgba(0,0,0,0.05)]">
-            <p className="text-[15px] text-gray-700 leading-[1.85] text-justify">
+          <div className="bg-white border border-gray-100 rounded-2xl p-5 md:p-8 shadow-[0_2px_16px_rgba(0,0,0,0.05)]">
+            <p className="text-[15px] text-gray-700 leading-[1.85] text-left md:text-justify">
               It was in the year 1998 that the MoEF (under orders from the Supreme Court of India in 1996) constituted
               the Coastal Zone Management Authorities for each State having coastline (SCZMA) and National Coastal Zone
               Management Authority (NCZMA) to ensure the implementation of CRZ Notification, 1991. The State level

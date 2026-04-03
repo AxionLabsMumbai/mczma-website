@@ -53,7 +53,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, options, value, onChange }) 
   }, []);
 
   return (
-    <div className="flex flex-col gap-1.5 min-w-[180px]" ref={ref}>
+    <div className="flex flex-col gap-1.5 w-full sm:min-w-[180px]" ref={ref}>
       <label className="text-[12px] font-semibold text-[#555] uppercase tracking-wide">{label}</label>
       <div className="relative">
         <button
@@ -140,15 +140,15 @@ const NotificationsCirculars: React.FC = () => {
         subtitle="Official notifications and circulars issued by MCZMA"
       />
 
-      <section className="w-full flex justify-center pb-16 bg-white">
+      <section className="w-full flex justify-center pt-4 pb-16 bg-white">
         <div className="w-full max-w-[1100px] px-4 flex flex-col gap-6">
 
           {/* Filter Bar */}
-          <div className="border border-gray-200 rounded-2xl px-6 py-5 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
-            <div className="flex flex-wrap items-end gap-5">
+          <div className="border border-gray-200 rounded-2xl px-4 sm:px-6 py-4 sm:py-5 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)]">
+            <div className="flex flex-wrap items-end gap-4">
 
               {/* Date */}
-              <div className="flex flex-col gap-1.5 min-w-[160px]">
+              <div className="flex flex-col gap-1.5 w-full sm:min-w-[160px] sm:flex-1">
                 <label className="text-[12px] font-semibold text-[#555] uppercase tracking-wide">Date</label>
                 <div className="relative">
                   <input
@@ -169,25 +169,27 @@ const NotificationsCirculars: React.FC = () => {
                 </div>
               </div>
 
-              <Dropdown
-                label="Content Category"
-                options={categoryOptions}
-                value={contentCategory}
-                onChange={setContentCategory}
-              />
+              <div className="w-full sm:w-auto">
+                <Dropdown
+                  label="Content Category"
+                  options={categoryOptions}
+                  value={contentCategory}
+                  onChange={setContentCategory}
+                />
+              </div>
 
               {/* Buttons */}
-              <div className="flex items-end gap-2 pb-0.5">
+              <div className="flex items-end gap-2 w-full sm:w-auto">
                 <button
                   onClick={handleReset}
-                  className="flex items-center gap-1.5 px-5 py-2.5 bg-[#043174] hover:bg-[#032660] text-white text-[13px] font-medium rounded-xl shadow-sm transition-colors cursor-pointer"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#043174] hover:bg-[#032660] text-white text-[13px] font-medium rounded-xl shadow-sm transition-colors cursor-pointer"
                 >
                   <RotateCcw className="w-3.5 h-3.5" />
                   Reset
                 </button>
                 <button
                   onClick={handleSearch}
-                  className="flex items-center gap-1.5 px-5 py-2.5 bg-[#6c757d] hover:bg-[#5a6268] text-white text-[13px] font-medium rounded-xl shadow-sm transition-colors cursor-pointer"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#6c757d] hover:bg-[#5a6268] text-white text-[13px] font-medium rounded-xl shadow-sm transition-colors cursor-pointer"
                 >
                   <Search className="w-3.5 h-3.5" />
                   Search
@@ -263,11 +265,11 @@ const NotificationsCirculars: React.FC = () => {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-between pt-2">
+            <div className="flex flex-col sm:flex-row items-center justify-between pt-2 gap-3">
               <p className="text-[13px] text-gray-500">
                 Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1}–{Math.min(currentPage * ITEMS_PER_PAGE, filtered.length)} of {filtered.length} entries
               </p>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-1.5 flex-wrap justify-center">
                 <button
                   onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                   disabled={currentPage === 1}

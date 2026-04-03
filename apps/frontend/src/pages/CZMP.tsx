@@ -82,7 +82,7 @@ const CZMP: React.FC = () => {
                   <button
                     key={district}
                     onClick={() => setActiveDistrict(district)}
-                    className={`w-full flex items-center justify-between px-5 py-3.5 rounded-2xl text-[13px] font-medium text-left transition-all duration-200 cursor-pointer border
+                    className={`w-full flex items-center justify-between px-3 sm:px-5 py-3 sm:py-3.5 rounded-2xl text-[13px] font-medium text-left transition-all duration-200 cursor-pointer border
                       ${isActive
                         ? "bg-blue-50 border-[#043174] text-[#043174]"
                         : "bg-white border-gray-200 text-[#043174] hover:border-[#043174] hover:bg-blue-50/50"}`}

@@ -86,12 +86,12 @@ const QuickLinks: React.FC = () => {
   const prevMobile = () => setMobileIndex((prev) => (prev - 1 + quickLinks.length) % quickLinks.length);
 
   return (
-    <div className="flex flex-col items-center w-full py-10 bg-white font-helvetica overflow-hidden">
+    <div className="flex flex-col items-center w-full py-6 md:py-10 bg-white font-helvetica overflow-hidden">
       <div className="relative w-full max-w-[1202px] px-4">
 
         {/* Header */}
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-[28px] md:text-[40px] font-semibold text-[#111111] tracking-tight">
+        <div className="flex justify-between items-center mb-5 md:mb-8">
+          <h2 className="text-[22px] md:text-[40px] font-semibold text-[#111111] tracking-tight">
             Quick Links
           </h2>
         </div>

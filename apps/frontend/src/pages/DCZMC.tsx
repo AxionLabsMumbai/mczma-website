@@ -52,7 +52,7 @@ const DCZMC: React.FC = () => {
         subtitle="District Coastal Zone Management Committees — Maharashtra"
       />
 
-      <section className="w-full flex justify-center pb-16 bg-white">
+      <section className="w-full flex justify-center pt-4 pb-16 bg-white">
         <div className="w-full max-w-[1100px] px-4 flex flex-col gap-6">
 
           {/* Results count */}
@@ -76,7 +76,7 @@ const DCZMC: React.FC = () => {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-1.5 mt-2">
+            <div className="flex items-center justify-center gap-1.5 mt-2 flex-wrap">
               <button
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page === 1}

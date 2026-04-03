@@ -159,7 +159,7 @@ const FAQ: React.FC = () => {
               >
                 <button
                   onClick={() => toggle(faq.id)}
-                  className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left cursor-pointer"
+                  className="w-full flex items-center justify-between gap-3 px-4 sm:px-6 py-4 sm:py-5 text-left cursor-pointer"
                 >
                   <div className="flex items-center gap-4 min-w-0">
                     <span
@@ -191,7 +191,7 @@ const FAQ: React.FC = () => {
                     isOpen ? "max-h-96" : "max-h-0"
                   }`}
                 >
-                  <p className="px-6 pb-5 text-[13px] md:text-[14px] text-gray-600 leading-relaxed border-t border-gray-100 pt-4 ml-11">
+                  <p className="px-4 sm:px-6 pb-5 text-[13px] md:text-[14px] text-gray-600 leading-relaxed border-t border-gray-100 pt-4 ml-0 sm:ml-11">
                     {faq.answer}
                   </p>
                 </div>
